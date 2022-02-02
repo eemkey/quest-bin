@@ -1,0 +1,26 @@
+{
+  "name": "request-bin",
+  "version": "1.0.0",
+  "description": "request-bin",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalkrueger/request-bin.git"
+  },
+  "author": "Kal Krueger",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "json-stringify-safe": "^5.0.1",
+    "mongoose": "^6.1.1",
+    "mongoose-unique-validator": "^3.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/kalkrueger/request-bin/issues"
+  },
+  "homepage": "https://github.com/kalkrueger/request-bin#readme"
+}
