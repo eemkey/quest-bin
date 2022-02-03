@@ -7,7 +7,18 @@ import React from "react";
 const Request = ({ req }) => {
   return (
     <div>
-      <p>{req.body}</p>
+      <div>
+          <p>Timestamp: {req.timestamp}</p>
+          <p>{req.method} {req.url}</p>
+          <p>Raw Body: {req.body}</p>
+
+        <h3>Request Headers</h3>
+          <p>Host: {req.headers.host}</p>
+          <p>Accept: {req.headers.accept}</p>
+          <p>Cookie: {req.headers.cookie}</p> 
+          {/* <p>User-Agent: {req.headers.user-agent}</p> */}
+        <hr></hr>
+      </div>
     </div>
   )
 }
