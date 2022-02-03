@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const Bin = require('./models/bin')
 var stringify = require('json-stringify-safe');
+const cors = require('cors');
 
 const chars = ("abcdefghijklmnopqrstuvwxyz0123456789").split('');
 
@@ -15,6 +16,7 @@ function randomUrl() {
   return str
 }
 
+app.use(cors());
 app.use(express.json())
 
 app.get('/', (request, response) => {
@@ -65,6 +67,6 @@ app.all('/:url', (request, response) => {
 })
 
 
-const PORT = 3000
+const PORT = 3001
 app.listen(PORT)
 console.log(`Server running on port ${PORT}`)
