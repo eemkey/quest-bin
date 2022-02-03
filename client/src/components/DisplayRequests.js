@@ -7,8 +7,8 @@ const DisplayRequests = ({ validBin, requests }) => {
     <div>
       {requests.length === 0 && validBin ?
         <p>No requests found!</p> :
-        requests.forEach(req => {
-          <Request key={req.timestamp} req={req} />})}
+        requests.map(req => {
+          return <Request key={req.timestamp} req={req} />}).reverse()}
     </div>
   )
 }
