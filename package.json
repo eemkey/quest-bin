@@ -4,7 +4,7 @@
   "description": "request-bin",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/kalkrueger/request-bin/issues"
   },
-  "homepage": "https://github.com/kalkrueger/request-bin#readme"
+  "homepage": "https://github.com/kalkrueger/request-bin#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }

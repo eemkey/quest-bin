@@ -20,7 +20,7 @@ app.use(express.json())
 app.get('/', (request, response) => {
   Bin.find({}).then(notes => {
     response.json(notes)
-  })
+  }).catch((error) => response.status(404).send({ error: "Bin not found." }))
 })
 
 app.post('/bins', (request, response) => {
@@ -31,13 +31,13 @@ app.post('/bins', (request, response) => {
 
   bin.save().then(savedBin => {
     response.json(savedBin)
-  })
+  }).catch((error) => response.status(404).send({ error: "Could not create new bin." }))
 })
 
 app.get('/bin/:url', (request, response) => {
   Bin.findOne({ url: request.params.url }).then(res =>
     response.json(res)
-  )
+  ).catch((error) => response.status(404).send({ error: "Could not find bin." }))
 })
 
 app.all('/:url', (request, response) => {
@@ -54,7 +54,14 @@ app.all('/:url', (request, response) => {
 
   Bin.findOneAndUpdate({url: request.params.url},
     {$push: {requests: req}},
-    {new: true}).then(res => response.status(200).send("All Good"))
+    {new: true})
+    .then((res) => {
+      if (res) {
+        response.status(200).send({ ip_address: request.headers["x-forwarded-for"] })
+      } else {
+        response.status(404).send({ error: "Could not add request." })
+      }
+  })
 })
 
 
