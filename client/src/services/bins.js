@@ -1,19 +1,22 @@
-const baseUrl = 'http://localhost:3000/';
+import axios from 'axios'
+//import { response } from 'express';
+
+const baseUrl = 'http://localhost:3001';
 
 const createNewBin = async () => {
-  const config = {
-    method: 'POST'
-  }
-
-  const response = await fetch(baseUrl, config);
-  return response.json();
+  const request = axios.post(`${baseUrl}/bins`);
+  return request.then(response => response.data);
 }
 
 const getBin = async (binId) => {
   console.log(binId)
-  const response = await fetch(`${baseUrl}/${binId}`);
-  return response.json();
+  const request = axios.get(`${baseUrl}/${binId}`);
+  return request.then(response => response.data);
 }
 
-export { createNewBin, getBin }
+const inspectBin = async (binId) => {
+  const request = axios.get(`${baseUrl}/bin/${binId}`);
+  return request.then(response => response.data.requests);
+}
 
+export { createNewBin, getBin, inspectBin }
