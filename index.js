@@ -3,6 +3,8 @@ const app = express()
 const Bin = require('./models/bin')
 var stringify = require('json-stringify-safe');
 const cors = require('cors');
+const dotenv = require('dotenv');
+dotenv.config()
 
 const chars = ("abcdefghijklmnopqrstuvwxyz0123456789").split('');
 
@@ -67,6 +69,6 @@ app.all('/:url', (request, response) => {
 })
 
 
-const PORT = 3001
+const PORT = process.env.PORT
 app.listen(PORT)
 console.log(`Server running on port ${PORT}`)

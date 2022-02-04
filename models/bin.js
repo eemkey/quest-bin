@@ -1,7 +1,9 @@
 const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
+const dotenv = require('dotenv')
+dotenv.config()
 
-const url = "mongodb+srv://kalkrueger:DwOJyqnIBilUsYou@bins.8osvl.mongodb.net/bins?retryWrites=true&w=majority";
+const url = process.env.MONGO_URI
 
 mongoose.connect(url)
   .then(() => {
