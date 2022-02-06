@@ -49,7 +49,7 @@ const BinHome = ({
         <div>
           <p>
             You can send requests to:{' '}
-            <code>{`http://localhost:3001/${currentBin}`}</code>
+            <code>{`${window.location.href}${currentBin}`}</code>
           </p>
           <br />
           <Button variant="dark" onClick={handleRequestClick}>
