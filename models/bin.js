@@ -5,7 +5,8 @@ dotenv.config()
 
 const url = process.env.MONGO_URI
 
-mongoose.connect(url)
+mongoose
+  .connect(url)
   .then(() => {
     console.log('connected to MongoDB')
   })
@@ -13,14 +14,15 @@ mongoose.connect(url)
     console.log('error connecting to MongoDB:', error.message)
   })
 
-  const binSchema = new mongoose.Schema({
-    url: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    createdAt: Date,
-    requests: [{
+const binSchema = new mongoose.Schema({
+  url: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  createdAt: Date,
+  requests: [
+    {
       timestamp: Date,
       method: String,
       ip: String,
@@ -29,21 +31,22 @@ mongoose.connect(url)
       body: String,
       query: String,
       ipAdd: String,
-      raw: String
-    }]
-  })
+      raw: String,
+    },
+  ],
+})
 
-  binSchema.plugin(uniqueValidator)
+binSchema.plugin(uniqueValidator)
 
-  binSchema.set('toJSON', {
-    transform: (document, returnedObject) => {
-      delete returnedObject._id
-      delete returnedObject.__v
-      returnedObject.requests.forEach(req => {
-        delete req.raw
-        delete req._id
-      })
-    }
-  })
+binSchema.set('toJSON', {
+  transform: (document, returnedObject) => {
+    delete returnedObject._id
+    delete returnedObject.__v
+    returnedObject.requests.forEach((req) => {
+      delete req.raw
+      delete req._id
+    })
+  },
+})
 
-  module.exports = mongoose.model('Bin', binSchema)
+module.exports = mongoose.model('Bin', binSchema)

@@ -1,31 +1,63 @@
-import DisplayRequests from './DisplayRequests'
+import React from 'react'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import './BinHome.css'
 
-const BinHome = ({binInput, setBinInput, validBin, setValidBin, handleClick, handleRequestClick}) => {
+const BinHome = ({
+  binInput,
+  currentBin,
+  setBinInput,
+  validBin,
+  handleCreateClick,
+  handleRequestClick,
+  handleInputClick,
+}) => {
   return (
-    <>
-    <div>
-      Inspect Your Bin
-    </div>
-    <div>
-      <input
-       type="text"
-       placeholder="Inspect bin requests..."
-       // retrieve list of bin requests or request templates if valid bin input
-        // onChange={(e) => setBinInput(e.target.value)}
-        // value={binInput}
-        />
-    </div>
-    <div>
-      <button onClick={handleClick}>Create a RequestBin</button>
-    </div>
-          {validBin ? (
+    <div className="BinHome">
+      <p>Inspect Your Bin:</p>
+      <Form onSubmit={handleInputClick}>
+        <Row className="justify-content-center">
+          <Col sm="auto" style={{ paddingRight: 0 }}>
+            <Form.Control
+              className="form-input"
+              type="text"
+              placeholder="Enter bin ID..."
+              value={binInput}
+              onChange={(e) => setBinInput(e.target.value)}
+            />
+          </Col>
+          <Col sm="auto" style={{ paddingLeft: '5px' }}>
+            <Button variant="outline-primary" type="submit">
+              Go
+            </Button>
+          </Col>
+        </Row>
+      </Form>
+      <div>
+        <Button
+          className="createBtn"
+          variant="primary"
+          onClick={handleCreateClick}
+        >
+          Create a RequestBin
+        </Button>
+      </div>
+      <br />
+      {validBin ? (
         <div>
-          <h3>You can send requests to {`http://localhost:3001/${binInput}`}</h3>
-          <button onClick={handleRequestClick}>Inspect requests sent to {binInput}</button>
+          <p>
+            You can send requests to:{' '}
+            <code>{`http://localhost:3001/${currentBin}`}</code>
+          </p>
+          <br />
+          <Button variant="dark" onClick={handleRequestClick}>
+            Inspect requests sent to {currentBin}
+          </Button>
         </div>
       ) : null}
-
-    </>
+    </div>
   )
 }
 
