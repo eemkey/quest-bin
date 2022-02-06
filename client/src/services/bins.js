@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3001'
+const baseUrl = '/'
 
 const createNewBin = async () => {
   const request = axios.post(`${baseUrl}/bins`)
