@@ -43,7 +43,7 @@ function App() {
   return (
     <Container>
       <header>
-        <h2>Request Bin</h2>
+        <h2>Quest Bin</h2>
         <BinHome
           binInput={binInput}
           currentBin={currentBin}

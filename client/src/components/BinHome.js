@@ -16,6 +16,8 @@ const BinHome = ({
 }) => {
   return (
     <div className="BinHome">
+      <p>Quest Bin is a Request Bin clone that provides you a URL that will collect requests made to it and lets you inspect those requests.</p>
+      <br />
       <p>Inspect Your Bin:</p>
       <Form onSubmit={handleInputClick}>
         <Row className="justify-content-center">
@@ -41,7 +43,7 @@ const BinHome = ({
           variant="primary"
           onClick={handleCreateClick}
         >
-          Create a RequestBin
+          Create a Bin
         </Button>
       </div>
       <br />
